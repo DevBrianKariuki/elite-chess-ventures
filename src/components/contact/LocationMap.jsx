@@ -25,7 +25,7 @@ export default function LocationMap() {
           className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg"
         >
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8193213776024!2d36.8062833!3d-1.2635385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f17390a6c5c89%3A0x5f7f6c6e6d177e48!2sWestlands%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1647887642324!5m2!1sen!2ske"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8082650307338!2d36.97315207402815!3d-1.2892668356274182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f6d72e92a5243%3A0x637a552dd9d45773!2sElite%20Chess%20Ventures!5e0!3m2!1sen!2ske!4v1739711619189!5m2!1sen!2ske"
             width="100%"
             height="450"
             style={{ border: 0 }}
