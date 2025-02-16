@@ -11,8 +11,8 @@ export default function Testimonials() {
   const testimonials = [
     {
       quote: "Elite Chess Ventures has transformed our school's approach to strategic thinking. The students are more focused and analytical in their studies.",
-      author: "Sarah Kimani",
-      role: "Principal, Sunrise Academy"
+      author: "Mr. Mwendwa",
+      role: "Principal, St Annes Preparatory"
     },
     {
       quote: "My daughter's confidence has grown tremendously since joining the chess program. The coaches are exceptional and truly care about each student's progress.",

@@ -13,7 +13,7 @@ export default function LocationMap() {
         >
           <h2 className="text-3xl font-bold text-brand-red mb-4">Visit Our Office</h2>
           <p className="text-brand-black">
-            Find us at our headquarters in Westlands, Nairobi
+            Find us at our headquarters in Utawala, Nairobi
           </p>
         </motion.div>
 

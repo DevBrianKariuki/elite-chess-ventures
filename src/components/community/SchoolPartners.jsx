@@ -10,28 +10,28 @@ export default function SchoolPartners() {
 
   const partners = [
     {
-      name: "Sunrise Academy",
-      location: "Nairobi",
-      students: "200+",
-      achievements: "Regional Champions 2023"
-    },
-    {
-      name: "Victory School",
-      location: "Mombasa",
+      name: "Blessed Assurance Academy",
+      location: "Syokimau",
       students: "150+",
-      achievements: "Most Improved Program 2023"
+      achievements: "Machakos Region Champions 2023"
     },
     {
-      name: "Excel High School",
-      location: "Kisumu",
-      students: "180+",
-      achievements: "National Finalists 2023"
+      name: "Good Testimony International",
+      location: "Embakasi",
+      students: "150+",
+      achievements: "Most Improved Program"
     },
     {
-      name: "Pioneer Academy",
-      location: "Nakuru",
+      name: "Brookhill Academy",
+      location: "Tassia",
+      students: "200+",
+      achievements: "National Finalists 2024"
+    },
+    {
+      name: "St. Charles School",
+      location: "Thika",
       students: "120+",
-      achievements: "Best New Program 2023"
+      achievements: "Best New Program 2024"
     }
   ];
 

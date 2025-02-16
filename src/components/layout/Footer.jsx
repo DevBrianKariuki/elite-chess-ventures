@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import {  FaTiktok, FaInstagram } from 'react-icons/fa';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -28,8 +28,8 @@ function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <ul className="text-brand-brown space-y-2">
-              <li>Email: info@elitechessventures.com</li>
-              <li>Phone: +254 XXX XXX XXX</li>
+              <li>Email: <a href='mailto:elitechessventures@gmail.com'>elitechessventures@gmail.com</a></li>
+              <li>Phone: +254 111 449 301</li>
               <li>Location: Nairobi, Kenya</li>
             </ul>
           </div>
@@ -37,10 +37,8 @@ function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
             <div className="flex space-x-4">
-              <a href="#" className="text-brand-brown hover:text-brand-white"><FaFacebook size={24} /></a>
-              <a href="#" className="text-brand-brown hover:text-brand-white"><FaTwitter size={24} /></a>
-              <a href="#" className="text-brand-brown hover:text-brand-white"><FaInstagram size={24} /></a>
-              <a href="#" className="text-brand-brown hover:text-brand-white"><FaLinkedin size={24} /></a>
+              <a href="https://instagram.com/elite_chess_ventures" className="text-brand-brown hover:text-brand-white"><FaInstagram size={24} /></a>
+              <a href="https://tiktok.com/elitechessventures" className="text-brand-brown hover:text-brand-white"><FaTiktok size={24} /></a>
             </div>
           </div>
         </div>

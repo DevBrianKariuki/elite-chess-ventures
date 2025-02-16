@@ -57,10 +57,10 @@ function Header() {
               </Link>
             ))}
             <Link
-              to="/support"
+              to="/play"
               className="bg-brand-red text-brand-white px-6 py-2 rounded-md hover:bg-brand-red/90 transition-colors font-medium"
             >
-              Support Us
+              Play
             </Link>
           </div>
 

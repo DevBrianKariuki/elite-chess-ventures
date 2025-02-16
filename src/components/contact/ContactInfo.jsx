@@ -1,22 +1,27 @@
 import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp } from 'react-icons/fa';
 
 export default function ContactInfo() {
   const contactDetails = [
     {
       icon: <FaPhone />,
       title: 'Phone',
-      details: ['+254 712 345 678', '+254 734 567 890'],
+      details: ['+254 111 449 301'],
+    },
+    {
+      icon: <FaWhatsapp />,
+      title: 'Whatsapp',
+      details: ['+254 111 449 301'],
     },
     {
       icon: <FaEnvelope />,
       title: 'Email',
-      details: ['info@elitechessventures.com', 'support@elitechessventures.com'],
+      details: ['elitechessventures@gmail.com'],
     },
     {
       icon: <FaMapMarkerAlt />,
       title: 'Location',
-      details: ['123 Chess Plaza', 'Westlands, Nairobi', 'Kenya'],
+      details: ['Zulu Plaza', 'Opposite Wallets,Kincar Utawala', 'Nairobi'],
     },
     {
       icon: <FaClock />,
@@ -63,7 +68,7 @@ export default function ContactInfo() {
           Follow us on social media to stay updated with our latest events and announcements.
         </p>
         <div className="flex space-x-4">
-          {['Facebook', 'Twitter', 'Instagram', 'LinkedIn'].map((platform, index) => (
+          {['Facebook', 'Instagram'].map((platform, index) => (
             <a
               key={index}
               href="#"
