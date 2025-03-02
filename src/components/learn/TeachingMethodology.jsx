@@ -56,12 +56,12 @@ export default function TeachingMethodology() {
         </motion.div>
 
         <Tab.Group>
-          <Tab.List className="flex space-x-4 mb-8 justify-center">
+          <Tab.List className="flex space-x-4 mb-8 justify-center overflow-x-auto px-4 snap-x snap-mandatory">
             {methodologies.map((method) => (
               <Tab
                 key={method.title}
                 className={({ selected }) =>
-                  `px-6 py-2 rounded-md focus:outline-none transition-colors ${
+                  `px-6 py-2 rounded-md focus:outline-none transition-colors whitespace-nowrap snap-start ${
                     selected
                       ? 'bg-brand-red text-brand-white'
                       : 'bg-brand-brown/20 text-brand-brown hover:bg-brand-brown/30'

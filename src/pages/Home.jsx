@@ -4,6 +4,7 @@ import Stats from '../components/home/Stats';
 import Testimonials from '../components/home/Testimonials';
 import UpcomingEvents from '../components/home/UpcomingEvents';
 import CallToAction from '../components/home/CallToAction';
+import '../styles/heroBackground.css';
 
 function Home() {
   const [ref, inView] = useInView({
@@ -15,7 +16,8 @@ function Home() {
     <div>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center bg-brand-black text-brand-white">
-        <div className="absolute inset-0 bg-[url('/hero-chess.jpg')] bg-cover bg-center opacity-30"></div>
+        <div className="absolute inset-0 hero-chess-pattern"></div> {/* Apply the updated class */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-70"></div>
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -37,12 +39,12 @@ function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-x-4"
+            className="space-y-4 md:space-x-4 md:space-y-0 flex flex-col md:flex-row justify-center"
           >
-            <a href="#learn-more" className="bg-brand-red text-brand-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-colors">
+            <a href="#learn-more" className="bg-brand-red text-brand-white px-8 py-3 rounded-full hover:bg-opacity-90 transition-colors">
               Learn More
             </a>
-            <a href="/contact" className="bg-transparent border-2 border-brand-brown text-brand-brown px-8 py-3 rounded-md hover:bg-brand-brown hover:text-brand-white transition-colors">
+            <a href="/contact" className="bg-transparent border-2 border-brand-brown text-brand-brown px-8 py-3 rounded-full hover:bg-brand-brown hover:text-brand-white transition-colors">
               Contact Us
             </a>
           </motion.div>

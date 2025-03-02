@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import logo from '../../assets/logo.jpg'; // Import the new logo image
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,16 +30,16 @@ function Header() {
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-2">
             <img
-              src="/logo.png"
+              src={logo} // Use the new logo image
               alt="Elite Chess Ventures"
               className="h-12 w-auto"
-              onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/48x48?text=ECV';
-              }}
+              // onError={(e) => {
+              //   e.target.src = 'https://cdn.prod.website-files.com/65943d23dc44e6ce92eb6b67/65fc9f534c1398dac499304d_commercial_search-p-800.jpg';
+              // }}
             />
-            <span className="text-xl font-bold text-brand-red hidden sm:block">
+            {/* <span className="text-xl font-bold text-brand-red hidden sm:block">
               Elite Chess Ventures
-            </span>
+            </span> */}
           </Link>
 
           {/* Desktop Navigation */}

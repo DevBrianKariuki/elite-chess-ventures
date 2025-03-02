@@ -7,21 +7,25 @@ export default function ContactInfo() {
       icon: <FaPhone />,
       title: 'Phone',
       details: ['+254 111 449 301'],
+      href: 'tel:+254111449301',
     },
     {
       icon: <FaWhatsapp />,
       title: 'Whatsapp',
       details: ['+254 111 449 301'],
+      href: 'https://wa.me/254111449301',
     },
     {
       icon: <FaEnvelope />,
       title: 'Email',
       details: ['elitechessventures@gmail.com'],
+      href: 'mailto:elitechessventures@gmail.com',
     },
     {
       icon: <FaMapMarkerAlt />,
       title: 'Location',
       details: ['Zulu Plaza', 'Opposite Wallets,Kincar Utawala', 'Nairobi'],
+      href: 'https://www.google.com/maps/search/?api=1&query=Zulu+Plaza+Opposite+Wallets,Kincar+Utawala+Nairobi',
     },
     {
       icon: <FaClock />,
@@ -54,7 +58,13 @@ export default function ContactInfo() {
               <div>
                 <h3 className="font-semibold text-brand-black mb-2">{item.title}</h3>
                 {item.details.map((detail, idx) => (
-                  <p key={idx} className="text-brand-brown">{detail}</p>
+                  item.href ? (
+                    <a key={idx} href={item.href} className="text-brand-brown block" target="_blank" rel="noopener noreferrer">
+                      {detail}
+                    </a>
+                  ) : (
+                    <p key={idx} className="text-brand-brown">{detail}</p>
+                  )
                 ))}
               </div>
             </motion.div>
@@ -68,7 +78,7 @@ export default function ContactInfo() {
           Follow us on social media to stay updated with our latest events and announcements.
         </p>
         <div className="flex space-x-4">
-          {['Facebook', 'Instagram'].map((platform, index) => (
+          {['Tiktok', 'Instagram'].map((platform, index) => (
             <a
               key={index}
               href="#"

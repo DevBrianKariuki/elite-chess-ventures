@@ -9,7 +9,7 @@ export default function Timeline() {
 
   const milestones = [
     {
-      year: '2021',
+      year: '2019',
       title: 'Foundation',
       description: 'Elite Chess Ventures was established with a vision to transform chess education in Africa.'
     },
@@ -43,7 +43,7 @@ export default function Timeline() {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-brand-brown/30" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-brand-brown/30 hidden md:block" />
 
           {milestones.map((milestone, index) => (
             <motion.div
@@ -51,13 +51,13 @@ export default function Timeline() {
               initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className={`relative flex items-center justify-between mb-12 ${
+              className={`relative flex items-center justify-between mb-12 flex-col md:${
                 index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
               }`}
             >
-              <div className="w-5/12" />
+              <div className="w-full md:w-5/12 mb-4 md:mb-0" />
               <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-brand-red rounded-full" />
-              <div className="w-5/12 p-6 bg-brand-brown/10 rounded-lg">
+              <div className="w-full md:w-5/12 p-4 md:p-6 bg-brand-brown/10 rounded-lg">
                 <div className="text-brand-red font-bold text-xl mb-2">{milestone.year}</div>
                 <h3 className="text-lg font-semibold mb-2">{milestone.title}</h3>
                 <p className="text-brand-brown">{milestone.description}</p>

@@ -5,9 +5,9 @@ export default {
 		extend: {
 			colors: {
 				brand: {
-					red: "#DC2626", // Primary brand red
-					black: "#1F2937", // Primary brand black
-					brown: "#8B5E34", // Primary brand brown
+					red: "#FF0000", // Actual color code for red
+					black: "#000000",
+					brown: "#A0522D", // Reverted back to light brown
 					white: "#FFFFFF",
 				},
 			},

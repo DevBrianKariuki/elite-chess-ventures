@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import CountUp from 'react-countup';
 
 export default function Stats() {
   const [ref, inView] = useInView({
@@ -26,7 +27,9 @@ export default function Stats() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-brand-red mb-2">{stat.number}</div>
+              <div className="text-4xl md:text-5xl font-bold text-brand-red mb-2">
+                {inView ? <CountUp end={parseInt(stat.number.replace(/\D/g, ''))} duration={2} /> : stat.number}
+              </div>
               <div className="text-brand-brown">{stat.label}</div>
             </motion.div>
           ))}

@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import CountUp from "react-countup";
 import TeamMember from "../components/about/TeamMember";
 import Timeline from "../components/about/Timeline";
 import Vision from "../components/about/Vision";
+import { danielPhoto, brianPhoto, gloryPhoto, hopePhoto, zionPhoto, newtonPhoto } from "../assets"; // Import the photos from the index file
 
 function About() {
 	const [ref, inView] = useInView({
@@ -59,21 +61,39 @@ function About() {
 
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 						<TeamMember
-							name="John Kamau"
-							role="Founder & Head Coach"
-							image="/team/john.jpg"
+							name="Daniel Wangari"
+							role="Founder"
+							image={danielPhoto} // Use the imported photo
 							description="International Master with 15+ years of coaching experience"
 						/>
 						<TeamMember
-							name="Alice Wanjiku"
-							role="Education Director"
-							image="/team/alice.jpg"
+							name="Brian Kariuki"
+							role="Tournament Director"
+							image={brianPhoto} // Use the imported photo
+							description="FIDE Arbiter and event management expert"
+						/>
+						<TeamMember
+							name="Shekinnah Glory"
+							role="Social Media Manager & Coach"
+							image={gloryPhoto} // Use the imported photo
+							description="FIDE Arbiter and event management expert"
+						/>
+						<TeamMember
+							name="Hope Hilda Odari"
+							role="Coach & Chief Arbiter"
+							image={hopePhoto} // Use the imported photo
+							description="FIDE Arbiter and event management expert"
+						/>
+						<TeamMember
+							name="Newton Githaiga"
+							role="Operations Manager & Coach"
+							image={newtonPhoto} // Use the imported photoimage={gloryPhoto} // Use the imported photo
 							description="Former national champion and curriculum development specialist"
 						/>
 						<TeamMember
-							name="David Omondi"
-							role="Tournament Director"
-							image="/team/david.jpg"
+							name="Zion Makori"
+							role="Coach & Chief Arbiter"
+							image={zionPhoto} // Use the imported photo
 							description="FIDE Arbiter and event management expert"
 						/>
 					</div>
@@ -99,22 +119,22 @@ function About() {
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 						{[
 							{
-								metric: "50+",
+								metric: 50,
 								label: "Partner Schools",
 								description: "Across East Africa",
 							},
 							{
-								metric: "10,000+",
+								metric: 10000,
 								label: "Students Trained",
 								description: "And counting",
 							},
 							{
-								metric: "100+",
+								metric: 100,
 								label: "Tournaments",
 								description: "Organized successfully",
 							},
 							{
-								metric: "25+",
+								metric: 25,
 								label: "National Champions",
 								description: "Produced",
 							},
@@ -129,7 +149,8 @@ function About() {
 								}}
 								className="bg-brand-white p-8 rounded-lg shadow-md text-center">
 								<div className="text-4xl font-bold text-brand-red mb-2">
-									{item.metric}
+									<CountUp end={item.metric} duration={2} />
+									{item.metric === 50 ? "+" : ""}
 								</div>
 								<div className="text-xl font-semibold text-brand-black mb-1">
 									{item.label}
