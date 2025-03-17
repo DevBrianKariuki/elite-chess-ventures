@@ -1,117 +1,149 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useState, useEffect } from 'react';
 import Stats from '../components/home/Stats';
 import Testimonials from '../components/home/Testimonials';
 import UpcomingEvents from '../components/home/UpcomingEvents';
 import CallToAction from '../components/home/CallToAction';
-import '../styles/heroBackground.css';
+import { photo4, photo5, photo7 } from '../assets';
 
 function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
+  const slides = [
+    {
+      image: photo4,
+      title: "Elite Chess Ventures",
+      subtitle: "Nurturing Strategic Minds Through Chess Across Africa"
+    },
+    {
+      image: photo5,
+      title: "Learn & Grow",
+      subtitle: "Expert Coaching and Structured Learning Programs"
+    },
+    {
+      image: photo7,
+      title: "Join Our Community",
+      subtitle: "Connect with Chess Enthusiasts Across Africa"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center bg-brand-black text-brand-white">
-        <div className="absolute inset-0 hero-chess-pattern"></div> {/* Apply the updated class */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-70"></div>
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold mb-6"
+      <motion.div 
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-brand-red text-white py-2 overflow-hidden relative z-50"
+      >
+        <motion.p 
+          initial={{ x: "100%" }}
+          animate={{ x: "-100%" }}
+          transition={{
+            x: {
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }
+          }}
+          className="text-sm md:text-base font-medium whitespace-nowrap"
+        >
+          🎉 Join our free chess lessons every Saturday from 10:00 AM - 3:00 PM! 
+          <a href="/learn" className="underline ml-2 hover:text-brand-white/80">
+            Learn more →
+          </a>
+        </motion.p>
+      </motion.div>
+
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {slides.map((slide, index) => (
+          <motion.div
+            key={index}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: currentSlide === index ? 1 : 0,
+              scale: currentSlide === index ? 1 : 1.1
+            }}
+            transition={{ duration: 1 }}
           >
-            Nurturing Strategic Minds Through Chess Across Africa
+            <img 
+              src={slide.image} 
+              alt={slide.title} 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/50" />
+          </motion.div>
+        ))}
+
+        <div className="relative z-10 container mx-auto px-6 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-5xl md:text-7xl font-bold mb-6 text-white"
+          >
+            {slides[currentSlide].title}
+            {currentSlide === 0 && <span className="text-brand-red"> Ventures</span>}
           </motion.h1>
+          
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl mb-8 text-brand-brown"
+            transition={{ duration: 1 }}
+            className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto"
           >
-            Empowering the next generation of strategic thinkers and chess champions
+            {slides[currentSlide].subtitle}
           </motion.p>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-4 md:space-x-4 md:space-y-0 flex flex-col md:flex-row justify-center"
+            transition={{ duration: 1 }}
+            className="flex flex-col md:flex-row gap-4 justify-center items-center"
           >
-            <a href="#learn-more" className="bg-brand-red text-brand-white px-8 py-3 rounded-full hover:bg-opacity-90 transition-colors">
-              Learn More
+            <a 
+              href="/learn" 
+              className="bg-brand-red text-white px-8 py-4 rounded-full hover:bg-opacity-90 transition-all hover:scale-105 transform"
+            >
+              Start Your Journey
             </a>
-            <a href="/contact" className="bg-transparent border-2 border-brand-brown text-brand-brown px-8 py-3 rounded-full hover:bg-brand-brown hover:text-brand-white transition-colors">
+            <a 
+              href="/contact" 
+              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-brand-black transition-all hover:scale-105 transform"
+            >
               Contact Us
             </a>
           </motion.div>
         </div>
-      </section>
 
-      {/* Quick Overview Section */}
-      <section ref={ref} className="py-20 bg-brand-white" id="learn-more">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl font-bold mb-4 text-brand-red">Welcome to Elite Chess Ventures</h2>
-            <p className="text-brand-black max-w-2xl mx-auto">
-              We are dedicated to promoting chess culture in schools across Africa,
-              developing strategic thinking skills, and nurturing the next generation
-              of chess champions.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Chess Training',
-                description: 'Structured programs for all skill levels',
-                icon: '♟️',
-              },
-              {
-                title: 'School Programs',
-                description: 'Integrated chess education for schools',
-                icon: '🏫',
-              },
-              {
-                title: 'Tournaments',
-                description: 'Regular competitions and events',
-                icon: '🏆',
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="bg-brand-brown/10 p-8 rounded-lg text-center hover:bg-brand-brown/20 transition-colors"
-              >
-                <div className="text-4xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-semibold mb-2 text-brand-red">{item.title}</h3>
-                <p className="text-brand-black">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                currentSlide === index ? 'bg-brand-red scale-125' : 'bg-white/50'
+              }`}
+            />
+          ))}
         </div>
       </section>
 
-      {/* Stats Section */}
       <Stats />
-
-      {/* Testimonials Section */}
       <Testimonials />
-
-      {/* Upcoming Events Section */}
       <UpcomingEvents />
-
-      {/* Call to Action Section */}
       <CallToAction />
     </div>
   );
