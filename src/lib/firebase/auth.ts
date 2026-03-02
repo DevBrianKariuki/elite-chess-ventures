@@ -13,9 +13,10 @@ export const signIn = async (email: string, password: string) => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         return { user: userCredential.user, error: null };
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Sign in error:', error);
-        return { user: null, error: error.message || 'Failed to sign in' };
+        const message = error instanceof Error ? error.message : 'Failed to sign in';
+        return { user: null, error: message };
     }
 };
 
@@ -26,9 +27,10 @@ export const signOut = async () => {
     try {
         await firebaseSignOut(auth);
         return { error: null };
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Sign out error:', error);
-        return { error: error.message || 'Failed to sign out' };
+        const message = error instanceof Error ? error.message : 'Failed to sign out';
+        return { error: message };
     }
 };
 

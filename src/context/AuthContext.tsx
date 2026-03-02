@@ -51,9 +51,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             }
 
             return { success: true };
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error('Login error:', error);
-            return { success: false, error: error.message || 'Failed to sign in' };
+            const message = error instanceof Error ? error.message : 'Failed to sign in';
+            return { success: false, error: message };
         }
     };
 

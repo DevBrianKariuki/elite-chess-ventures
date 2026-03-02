@@ -16,4 +16,4 @@ export interface BlogPost {
     updatedAt?: string;
 }
 
-export interface BlogFormData extends Omit<BlogPost, 'id' | 'createdAt' | 'updatedAt'> { }
+export type BlogFormData = Omit<BlogPost, 'id' | 'createdAt' | 'updatedAt'>;

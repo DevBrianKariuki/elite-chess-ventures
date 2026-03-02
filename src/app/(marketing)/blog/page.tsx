@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, User, Tag, ArrowRight } from 'lucide-react';
 import { getPublishedBlogs } from '@/lib/firebase/blogs';
 import type { BlogPost } from '@/types/blog';
@@ -155,9 +156,14 @@ export default function BlogPage() {
                                         className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group"
                                     >
                                         {/* Article Image Placeholder */}
-                                        <div className="bg-gradient-to-br from-red-50 to-amber-50 h-48 flex items-center justify-center text-6xl group-hover:scale-105 transition-transform duration-300">
+                                        <div className="bg-gradient-to-br from-red-50 to-amber-50 h-48 flex items-center justify-center text-6xl group-hover:scale-105 transition-transform duration-300 relative overflow-hidden">
                                             {article.image && typeof article.image === 'string' && article.image.startsWith('http') ? (
-                                                <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+                                                <Image
+                                                    src={article.image}
+                                                    alt={article.title}
+                                                    fill
+                                                    className="object-cover"
+                                                />
                                             ) : (
                                                 <span>{article.image || '📝'}</span>
                                             )}

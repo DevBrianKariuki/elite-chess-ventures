@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Plus, Edit, Trash2, Eye, EyeOff, Search, Calendar, MapPin, Users, Trophy, Upload, Loader2 } from 'lucide-react';
 import { Tournament } from '@/types/tournament';
 import {
@@ -435,7 +436,7 @@ function TournamentModal({
                             <select
                                 required
                                 value={formData.status}
-                                onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
+                                onChange={(e) => setFormData({ ...formData, status: e.target.value as Tournament['status'] })}
                                 className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
                             >
                                 <option value="open">Open</option>
@@ -600,18 +601,20 @@ function TournamentModal({
                                 {(formData.image || selectedFile) && (
                                     <div className="mt-3">
                                         <p className="text-xs text-slate-600 mb-2">Preview:</p>
-                                        <div className="bg-gradient-to-br from-red-50 to-amber-50 rounded-lg h-40 flex items-center justify-center overflow-hidden">
+                                        <div className="bg-gradient-to-br from-red-50 to-amber-50 rounded-lg h-40 flex items-center justify-center overflow-hidden relative">
                                             {selectedFile ? (
-                                                <img
+                                                <Image
                                                     src={URL.createObjectURL(selectedFile)}
                                                     alt="Preview"
-                                                    className="w-full h-full object-cover"
+                                                    fill
+                                                    className="object-cover"
                                                 />
                                             ) : formData.image ? (
-                                                <img
+                                                <Image
                                                     src={formData.image}
                                                     alt="Preview"
-                                                    className="w-full h-full object-cover"
+                                                    fill
+                                                    className="object-cover"
                                                 />
                                             ) : null}
                                         </div>

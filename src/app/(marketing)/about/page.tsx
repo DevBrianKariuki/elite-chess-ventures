@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Target, Eye, Award, Users, ArrowRight, Mail, Trophy, Star } from 'lucide-react';
+import Image from 'next/image';
+import { Target, Eye, ArrowRight, Mail, Trophy, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { getVisibleTeamMembers } from '@/lib/firebase/team';
 import type { TeamMember } from '@/types/team';
@@ -246,9 +247,11 @@ export default function AboutPage() {
                                             transition={{ duration: 0.5 }}
                                         >
                                             {member.photo ? (
-                                                <img
+                                                <Image
                                                     src={member.photo}
                                                     alt={member.name}
+                                                    width={96}
+                                                    height={96}
                                                     className="w-full h-full object-cover"
                                                 />
                                             ) : (

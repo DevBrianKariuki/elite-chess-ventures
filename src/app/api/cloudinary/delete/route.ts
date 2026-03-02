@@ -4,6 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
 
 export async function POST(request: NextRequest) {
     try {
@@ -34,7 +35,6 @@ export async function POST(request: NextRequest) {
         const signatureString = `public_id=${publicId}&timestamp=${timestamp}${apiSecret}`;
 
         // Generate SHA-1 signature
-        const crypto = require('crypto');
         const signature = crypto
             .createHash('sha1')
             .update(signatureString)

@@ -21,8 +21,8 @@ interface CloudinaryUploadResponse {
  */
 export const uploadToCloudinary = async (
     file: File,
-    folder: string = 'elite-chess',
-    onProgress?: (progress: number) => void
+    folder: string = 'elite-chess'
+    // _onProgress parameter removed as it's not used
 ): Promise<string> => {
     try {
         const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;

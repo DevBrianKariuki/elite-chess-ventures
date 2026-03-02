@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Calendar, Users, MapPin, Clock, DollarSign, ArrowLeft, CheckCircle2, Trophy, Award, Loader2 } from 'lucide-react';
+import { Calendar, Users, MapPin, Clock, DollarSign, ArrowLeft, Trophy, Award, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
 import { getTournamentById } from '@/lib/firebase/tournaments';

@@ -19,4 +19,4 @@ export interface TeamMember {
     updatedAt?: string;
 }
 
-export interface TeamMemberFormData extends Omit<TeamMember, 'id' | 'createdAt' | 'updatedAt'> { }
+export type TeamMemberFormData = Omit<TeamMember, 'id' | 'createdAt' | 'updatedAt'>;

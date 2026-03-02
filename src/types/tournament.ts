@@ -22,4 +22,4 @@ export interface Tournament {
     updatedAt?: string;
 }
 
-export interface TournamentFormData extends Omit<Tournament, 'id' | 'createdAt' | 'updatedAt'> { }
+export type TournamentFormData = Omit<Tournament, 'id' | 'createdAt' | 'updatedAt'>;

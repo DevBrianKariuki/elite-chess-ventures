@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Trophy, Calendar, Users, Award, CheckCircle2, ArrowRight, MapPin, Clock } from 'lucide-react';
+import { Trophy, Calendar, Users, Award, CheckCircle2, ArrowRight, MapPin } from 'lucide-react';
 import { getVisibleTournaments } from '@/lib/firebase/tournaments';
 import type { Tournament } from '@/types/tournament';
 import Image from 'next/image';

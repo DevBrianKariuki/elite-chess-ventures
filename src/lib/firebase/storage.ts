@@ -10,8 +10,8 @@ import { storage } from '../firebase';
  */
 export const uploadImage = async (
     file: File,
-    path: string,
-    onProgress?: (progress: number) => void
+    path: string
+    // _onProgress parameter removed as it's not used
 ): Promise<string> => {
     try {
         // Create a storage reference

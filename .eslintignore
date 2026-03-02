@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+dist
+build
+next-env.d.ts
+tailwind.config.ts
+next.config.js
+postcss.config.js

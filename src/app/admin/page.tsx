@@ -33,7 +33,7 @@ export default function AdminLoginPage() {
             } else {
                 setError(loginError || 'Invalid email or password');
             }
-        } catch (err) {
+        } catch {
             setError('An error occurred. Please try again.');
         } finally {
             setIsLoading(false);

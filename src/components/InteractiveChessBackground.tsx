@@ -15,22 +15,22 @@ interface ChessPiece {
     scale: number;
 }
 
+// Chess piece images
+const chessPieceImages = [
+    '/images/chess/bishop.png',
+    '/images/chess/chess.png',
+    '/images/chess/king-chess-piece-shape.png',
+    '/images/chess/queen.png',
+    '/images/chess/rook.png',
+    '/images/chess/strategy-development.png',
+    '/images/chess/strategy.png',
+];
+
 export default function InteractiveChessBackground() {
     const containerRef = useRef<HTMLDivElement>(null);
     const piecesRef = useRef<ChessPiece[]>([]);
     const animationFrameRef = useRef<number>();
     const scrollYRef = useRef(0);
-
-    // Chess piece images
-    const chessPieceImages = [
-        '/images/chess/bishop.png',
-        '/images/chess/chess.png',
-        '/images/chess/king-chess-piece-shape.png',
-        '/images/chess/queen.png',
-        '/images/chess/rook.png',
-        '/images/chess/strategy-development.png',
-        '/images/chess/strategy.png',
-    ];
 
     useEffect(() => {
         if (!containerRef.current) return;

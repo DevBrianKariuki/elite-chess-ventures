@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Plus, Edit, Trash2, Eye, EyeOff, Search, Mail, Award, Users, Upload, Loader2 } from 'lucide-react';
 import { TeamMember } from '@/types/team';
 import {
@@ -183,11 +184,13 @@ export default function TeamManagementPage() {
                                 <div key={member.id} className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-all">
                                     <div className="p-6">
                                         <div className="flex items-start justify-between mb-4">
-                                            <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-amber-100 rounded-full flex items-center justify-center overflow-hidden">
+                                            <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-amber-100 rounded-full flex items-center justify-center overflow-hidden relative">
                                                 {member.photo ? (
-                                                    <img
+                                                    <Image
                                                         src={member.photo}
                                                         alt={member.name}
+                                                        width={64}
+                                                        height={64}
                                                         className="w-full h-full object-cover"
                                                     />
                                                 ) : (
@@ -479,18 +482,20 @@ function TeamMemberModal({
                                 {(formData.photo || selectedFile) && (
                                     <div className="mt-3">
                                         <p className="text-xs text-slate-600 mb-2">Preview:</p>
-                                        <div className="bg-gradient-to-br from-red-50 to-amber-50 rounded-lg h-32 w-32 flex items-center justify-center overflow-hidden">
+                                        <div className="bg-gradient-to-br from-red-50 to-amber-50 rounded-lg h-32 w-32 flex items-center justify-center overflow-hidden relative">
                                             {selectedFile ? (
-                                                <img
+                                                <Image
                                                     src={URL.createObjectURL(selectedFile)}
                                                     alt="Preview"
-                                                    className="w-full h-full object-cover"
+                                                    fill
+                                                    className="object-cover"
                                                 />
                                             ) : formData.photo ? (
-                                                <img
+                                                <Image
                                                     src={formData.photo}
                                                     alt="Preview"
-                                                    className="w-full h-full object-cover"
+                                                    fill
+                                                    className="object-cover"
                                                 />
                                             ) : null}
                                         </div>

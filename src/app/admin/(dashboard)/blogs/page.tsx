@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Plus, Edit, Trash2, Eye, EyeOff, Search, Calendar, Tag, User, Upload, Loader2, FileText } from 'lucide-react';
+import Image from 'next/image';
+import { Plus, Edit, Trash2, Search, Calendar, Tag, User, Upload, Loader2, FileText } from 'lucide-react';
 import { BlogPost } from '@/types/blog';
 import {
     getAllBlogs,
@@ -500,18 +501,20 @@ function BlogPostModal({
                                 {(formData.image || selectedFile) && (
                                     <div className="mt-3">
                                         <p className="text-xs text-slate-600 mb-2">Preview:</p>
-                                        <div className="bg-gradient-to-br from-red-50 to-amber-50 rounded-lg h-32 flex items-center justify-center overflow-hidden">
+                                        <div className="bg-gradient-to-br from-red-50 to-amber-50 rounded-lg h-32 flex items-center justify-center overflow-hidden relative">
                                             {selectedFile ? (
-                                                <img
+                                                <Image
                                                     src={URL.createObjectURL(selectedFile)}
                                                     alt="Preview"
-                                                    className="w-full h-full object-cover"
+                                                    fill
+                                                    className="object-cover"
                                                 />
                                             ) : formData.image && formData.image.startsWith('http') ? (
-                                                <img
+                                                <Image
                                                     src={formData.image}
                                                     alt="Preview"
-                                                    className="w-full h-full object-cover"
+                                                    fill
+                                                    className="object-cover"
                                                 />
                                             ) : (
                                                 <span className="text-5xl">{formData.image}</span>
