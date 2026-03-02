@@ -1,0 +1,51 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Blogs collection
+    match /blogs/{blogId} {
+      // Allow public read access to all blogs (for admin dashboard)
+      // In production, you may want to restrict this
+      allow read: if true;
+      // Allow write access to everyone for now (CHANGE THIS IN PRODUCTION!)
+      allow create, update, delete: if true;
+    }
+    
+    // Team members collection
+    match /team/{memberId} {
+      // Allow public read access to all team members
+      allow read: if true;
+      // Allow write access to everyone for now (CHANGE THIS IN PRODUCTION!)
+      allow create, update, delete: if true;
+    }
+    
+    // Tournaments collection
+    match /tournaments/{tournamentId} {
+      // Allow public read access to all tournaments
+      allow read: if true;
+      // Allow write access to everyone for now (CHANGE THIS IN PRODUCTION!)
+      allow create, update, delete: if true;
+    }
+    
+    // Contact submissions collection (if you add it later)
+    match /contacts/{contactId} {
+      // Allow anyone to create contact submissions
+      allow create: if true;
+      // Allow read/update/delete for development
+      allow read, update, delete: if true;
+    }
+    
+    // Newsletter subscriptions collection (if you add it later)
+    match /newsletter/{subscriptionId} {
+      // Allow anyone to subscribe
+      allow create: if true;
+      // Allow read/update/delete for development
+      allow read, update, delete: if true;
+    }
+  }
+}
