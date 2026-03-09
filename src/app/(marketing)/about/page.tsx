@@ -40,7 +40,7 @@ export default function AboutPage() {
                             About <span className="text-red-600">Elite Chess Ventures</span>
                         </h1>
                         <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-                            Leading chess education in Kenya for over 15 years
+                            Leading chess education in Kenya since 2019
                         </p>
                     </div>
                 </div>
@@ -54,7 +54,7 @@ export default function AboutPage() {
                     </h2>
                     <div className="space-y-4 text-sm md:text-base text-slate-600 leading-relaxed">
                         <p>
-                            Elite Chess Ventures was founded with a simple mission: to make professional chess coaching
+                            Elite Chess Ventures was founded in 2019 with a simple mission: to make professional chess coaching
                             accessible to every Kenyan student. What started as small chess clubs in Nairobi has grown
                             into Kenya's premier chess education organization, serving over 50 schools and 2,000 students annually.
                         </p>
@@ -105,7 +105,7 @@ export default function AboutPage() {
                             },
                             {
                                 title: 'Proven Track Record',
-                                description: '15+ years of excellence with 5 national champions and 100+ tournament winners trained.',
+                                description: 'Since 2019, we have trained 5 national champions and 100+ tournament winners with consistent excellence.',
                             },
                             {
                                 title: 'Comprehensive Programs',

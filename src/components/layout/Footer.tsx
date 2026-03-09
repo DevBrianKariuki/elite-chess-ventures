@@ -87,7 +87,14 @@ export default function Footer() {
                             </li>
                             <li className="flex items-start gap-2.5">
                                 <MapPin className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" />
-                                <span className="text-sm text-slate-400">Zulu Plaza, Kincar Utawala, Nairobi</span>
+                                <a
+                                    href={process.env.NEXT_PUBLIC_GOOGLE_MAPS_LINK || 'https://maps.app.goo.gl/xRJb6miNV6QWHmh16'}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-slate-400 hover:text-red-600 transition-colors"
+                                >
+                                    Zulu Plaza, Kincar Utawala, Nairobi
+                                </a>
                             </li>
                         </ul>
                     </div>

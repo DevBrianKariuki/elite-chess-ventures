@@ -1,10 +1,55 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Calendar, Send, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Phone, Mail, MapPin, Calendar, Send, ChevronDown, Loader2, CheckCircle } from 'lucide-react';
+import CallbackModal from '@/components/modals/CallbackModal';
+import ConsultationModal from '@/components/modals/ConsultationModal';
+import { sendContactEmail, initEmailJS } from '@/lib/emailjs';
 
 export default function ContactPage() {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
+    const [showCallbackModal, setShowCallbackModal] = useState(false);
+    const [showConsultationModal, setShowConsultationModal] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        interest: '',
+        message: '',
+    });
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        // Initialize EmailJS when component mounts
+        initEmailJS();
+    }, []);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setError(null);
+
+        const result = await sendContactEmail(formData);
+
+        if (result.success) {
+            setSuccess(true);
+            setFormData({ name: '', email: '', phone: '', interest: '', message: '' });
+            setTimeout(() => setSuccess(false), 5000);
+        } else {
+            setError(result.error || 'Failed to send message. Please try again.');
+        }
+
+        setLoading(false);
+    };
 
     const toggleFaq = (index: number) => {
         setOpenFaq(openFaq === index ? null : index);
@@ -36,7 +81,7 @@ export default function ContactPage() {
                         </h2>
                         <div className="rounded-lg overflow-hidden h-96 w-full shadow-md">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127641.18174719618!2d36.70730744999999!3d-1.3028617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1172d84d49a7%3A0xf7cf0254b297924c!2sNairobi!5e0!3m2!1sen!2ske!4v1709038445678!5m2!1sen!2ske"
+                                src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d26633.65412242643!2d36.9819648!3d-1.2845056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x182f6d72e92a5243%3A0x637a552dd9d45773!2sElite%20Chess%20Ventures%2C%20Utawala%20kincar%2C%20Zulu%20Plaza%20opposite%20wallets!3m2!1d-1.2891956999999998!2d36.975880499999995!4m5!1s0x182f6d72e92a5243%3A0x637a552dd9d45773!2sElite%20Chess%20Ventures%2C%20Utawala%20kincar%2C%20Zulu%20Plaza%20opposite%20wallets!3m2!1d-1.2891956999999998!2d36.975880499999995!5e1!3m2!1sen!2ske!4v1773066212637!5m2!1sen!2ske"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}
@@ -59,7 +104,21 @@ export default function ContactPage() {
                             <h2 className="font-heading font-bold text-2xl text-slate-900 mb-6">
                                 Send Us a Message
                             </h2>
-                            <form className="space-y-5">
+
+                            {success && (
+                                <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-4 flex items-center gap-2">
+                                    <CheckCircle className="w-5 h-5" />
+                                    <span className="text-sm">Message sent successfully! We'll get back to you soon.</span>
+                                </div>
+                            )}
+
+                            {error && (
+                                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
+                                    {error}
+                                </div>
+                            )}
+
+                            <form onSubmit={handleSubmit} className="space-y-5">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-2">
                                         Full Name *
@@ -68,6 +127,8 @@ export default function ContactPage() {
                                         type="text"
                                         id="name"
                                         name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
                                         required
                                         className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-600 focus:ring-2 focus:ring-red-100 outline-none transition-all text-sm"
                                         placeholder="John Doe"
@@ -82,6 +143,8 @@ export default function ContactPage() {
                                         type="email"
                                         id="email"
                                         name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
                                         required
                                         className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-600 focus:ring-2 focus:ring-red-100 outline-none transition-all text-sm"
                                         placeholder="john@example.com"
@@ -96,6 +159,8 @@ export default function ContactPage() {
                                         type="tel"
                                         id="phone"
                                         name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
                                         className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-600 focus:ring-2 focus:ring-red-100 outline-none transition-all text-sm"
                                         placeholder="+254 XXX XXX XXX"
                                     />
@@ -108,6 +173,8 @@ export default function ContactPage() {
                                     <select
                                         id="interest"
                                         name="interest"
+                                        value={formData.interest}
+                                        onChange={handleChange}
                                         required
                                         className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-600 focus:ring-2 focus:ring-red-100 outline-none transition-all text-sm"
                                     >
@@ -127,6 +194,8 @@ export default function ContactPage() {
                                     <textarea
                                         id="message"
                                         name="message"
+                                        value={formData.message}
+                                        onChange={handleChange}
                                         rows={5}
                                         required
                                         className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-600 focus:ring-2 focus:ring-red-100 outline-none transition-all text-sm resize-none"
@@ -136,10 +205,20 @@ export default function ContactPage() {
 
                                 <button
                                     type="submit"
-                                    className="w-full bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition-all duration-300 flex items-center justify-center gap-2 text-sm"
+                                    disabled={loading}
+                                    className="w-full bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition-all duration-300 flex items-center justify-center gap-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    <Send className="w-4 h-4" />
-                                    Send Message
+                                    {loading ? (
+                                        <>
+                                            <Loader2 className="w-4 h-4 animate-spin" />
+                                            Sending...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send className="w-4 h-4" />
+                                            Send Message
+                                        </>
+                                    )}
                                 </button>
                             </form>
                         </div>
@@ -191,9 +270,16 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-base text-slate-900 mb-1">Location</h3>
-                                        <p className="text-sm text-slate-600">Zulu Plaza</p>
-                                        <p className="text-sm text-slate-600">Opposite Wallets, Kincar Utawala</p>
-                                        <p className="text-sm text-slate-600">Nairobi</p>
+                                        <a
+                                            href={process.env.NEXT_PUBLIC_GOOGLE_MAPS_LINK || 'https://maps.app.goo.gl/xRJb6miNV6QWHmh16'}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-sm text-slate-600 hover:text-red-600 transition-colors block"
+                                        >
+                                            <p>Zulu Plaza</p>
+                                            <p>Opposite Wallets, Kincar Utawala</p>
+                                            <p>Nairobi</p>
+                                        </a>
                                         <p className="text-xs text-slate-500 mt-1">Visit by appointment only</p>
                                     </div>
                                 </div>
@@ -205,11 +291,17 @@ export default function ContactPage() {
                                     Quick Actions
                                 </h3>
                                 <div className="space-y-3">
-                                    <button className="w-full bg-white border border-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-lg hover:border-red-600 hover:text-red-600 transition-all duration-300 flex items-center justify-center gap-2 text-sm">
+                                    <button
+                                        onClick={() => setShowConsultationModal(true)}
+                                        className="w-full bg-white border border-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-lg hover:border-red-600 hover:text-red-600 transition-all duration-300 flex items-center justify-center gap-2 text-sm"
+                                    >
                                         <Calendar className="w-4 h-4" />
                                         Schedule Free Consultation
                                     </button>
-                                    <button className="w-full bg-white border border-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-lg hover:border-red-600 hover:text-red-600 transition-all duration-300 flex items-center justify-center gap-2 text-sm">
+                                    <button
+                                        onClick={() => setShowCallbackModal(true)}
+                                        className="w-full bg-white border border-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-lg hover:border-red-600 hover:text-red-600 transition-all duration-300 flex items-center justify-center gap-2 text-sm"
+                                    >
                                         <Phone className="w-4 h-4" />
                                         Request Callback
                                     </button>
@@ -288,6 +380,10 @@ export default function ContactPage() {
                     </div>
                 </div>
             </section>
+
+            {/* Modals */}
+            <CallbackModal isOpen={showCallbackModal} onClose={() => setShowCallbackModal(false)} />
+            <ConsultationModal isOpen={showConsultationModal} onClose={() => setShowConsultationModal(false)} />
         </main>
     );
 }
