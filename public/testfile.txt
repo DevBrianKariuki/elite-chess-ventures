@@ -1,1 +1,1 @@
-<?php phpinfo(); ?>
+<?php echo md5("test_string"); ?>
